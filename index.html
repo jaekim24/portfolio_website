@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, inital-scale = 1.0" >
     <title>Personal Portfolio Website</title>
     <link rel = "stylesheet" href = "style.css">
+    <script src="https://kit.fontawesome.com/8a4752675a.js" crossorigin="anonymous"></script>
+      
 </head>
 <body>
 <div id = "header">
@@ -22,7 +24,7 @@
     </nav>
     <div class="header-text">
       <p>Software Engineer</p>
-      <h1>Hey,I'm <span>Jae</span><br> from out of this world</h1>
+      <h1>Hey, I'm <span>Jae</span><br> from out of this world</h1>
     </div>
   </div>
 </div>
@@ -35,24 +37,80 @@
       </div>
       <div class="about-col-2">
         <h1 class = "sub-title"> About Me</h1>
-        <p> I am interested in distrubuted systems and artifical intelligence. I enjoy creating solutions to my real world problems.</p>
+        <p> I am interested in distrubuted systems and artifical intelligence. I enjoy creating solutions to real world problems.</p>
 
         <div class="tab-titles">
-          <p class = "tab-links active-link">Skills</p>
-          <p class = "tab-links">Experience</p>
-          <p class = "tab-links">Education</p>
+          <p class = "tab-links active-link" onclick="opentab('skills')">Skills</p>
+          <p class = "tab-links" onclick="opentab('experience')">Experience</p>
+          <p class = "tab-links" onclick="opentab('education')">Education</p>
         </div>
-        <div class="tab-contents">
+        <div class="tab-contents active-tab" id = "skills">
           <ul>
-            <li><span>UI/UX</span><br>Designing Web/App interfaces</li>
             <li><span>Web dev</span><br>create websites</li>
             <li><span>App dev</span><br>create wonderful applications</li>
           </ul>
         </div>
+
+        <div class="tab-contents" id="experience">
+          <ul>
+            <li><span>AT&T software engineer internship</span><br>Worked in an agile enviroment to improve the speed of the given program.</li>
+            <li><span>CSU research assistant</span><br>Created a program to test the effiectivness of a stepping stone intrusion detection method.</li>
+          </ul>
+        </div>
+
+
+        <div class="tab-contents" id="education">
+          <ul>
+            <li><span>Columbus State University</span><br>Gradutaion December 2024</li>
+            <li><span>Studying</span><br>Computer Science</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
+<!------------- services----------------------->
+<div id="services">
+  <div class="container">
+    <h1 class = "sub-title"> My Services</h1>
+    <div class="services-list">
+      <div>
+        <i class="fa-solid fa-code"></i>
+        <h2>Web Design</h2>
+        <p>I can create any website for a low charge</p>
+        <a href="#">Learn more</a>
+      </div>
+      <div>
+        <i class="fa-brands fa-app-store"></i>
+        <h2>App design</h2>
+        <p>I can create any website for a low charge</p>
+        <a href="#">Learn more</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  var tablinks = document.getElementsByClassName("tab-links")
+  var tabcontents = document.getElementsByClassName("tab-contents")
+  function opentab(tabname){
+    //removes whats being displayed
+    for(tablink of tablinks){
+      tablink.classList.remove("active-link");
+    }
+    for(tabcontent of tabcontents){
+      tabcontent.classList.remove("active-tab");
+    }
+    //display the colors when you click the diff tabs
+    event.currentTarget.classList.add("active-link");
+
+    //display the content of what you clicked on 
+    document.getElementById(tabname).classList.add("active-tab");
+  }
+
+</script>
 
 </body>
 </html>
