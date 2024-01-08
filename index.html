@@ -13,14 +13,15 @@
 <div id = "header">
 	<div class = "container">
 		<nav>
-			<div class = "text-logo"> Jae. </div>
-			<ul>
-				<li><a href = "#"> Home</a></li>
-				<li><a href = "#"> About</a></li>
-				<li><a href = "#"> Projects</a></li>
-				<li><a href = "#"> Hobbies</a></li>
-				<li><a href = "#"> Contact</a></li>
+			<div class = "text-logo"> Jae </div>
+			<ul id = "sidemenu">
+				<li><a href = "#header"> Home</a></li>
+				<li><a href = "#about"> About</a></li>
+				<li><a href = "#portfolio"> Projects</a></li>
+				<li><a href = "#contact"> Contact</a></li>
+				<i class="fas fa-times" onclick = "closemenu()"></i>
 			</ul>
+			<i class="fas fa-bars" onclick="openmenu()"></i>
 		</nav>
 		<div class="header-text">
 			<p>Software Engineer</p>
@@ -70,26 +71,7 @@
 		</div>
 	</div>
 </div>
-<!------------- services----------------------->
-<div id="services">
-	<div class="container">
-		<h1 class = "sub-title"> My Services</h1>
-		<div class="services-list">
-			<div>
-				<i class="fa-solid fa-code"></i>
-				<h2>Web Design</h2>
-				<p>I can create any website for a low charge</p>
-				<a href="#">Learn more</a>
-			</div>
-			<div>
-				<i class="fa-brands fa-app-store"></i>
-				<h2>App design</h2>
-				<p>I can create any website for a low charge</p>
-				<a href="#">Learn more</a>
-			</div>
-		</div>
-	</div>
-</div>
+
 <!---------portfolio------------->
 <div id="portfolio">
 	<div class="container">
@@ -97,19 +79,19 @@
 		<h1 class = "sub-title">My Work</h1>
 		<div class="work-list">
 			<div class="work">
-				<img src="images/work1.jpg" >
+				<img src="images/tall_oil.JPG" >
 				<div class="layer">
-					<h3>Social Media App</h3>
-					<p>The app lets ytou connectblahy blah </p>
-					<a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+					<h3>Predicting Oil Prices with Machine Learning</h3>
+					<p> Trained a machine learning model to predict oil prices </p>
+					<a href="https://github.com/jaekim24/Predicting_Real_Oil_Prices/tree/main"target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
 				</div>
 			</div>
 			<div class="work">
 				<img src="images/work2.jpg" >
 				<div class="layer">
-					<h3>music App</h3>
-					<p>The app lets ytou connectblahy blah </p>
-					<a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+					<h3>Automated Lawn Mower</h3>
+					<p>Proof of concept of a self mowing lawn mower.</p>
+					<a href="https://github.com/jaekim24/mower-T9000"target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
 				</div>
 			</div>
 			<div class="work">
@@ -121,7 +103,6 @@
 				</div>
 			</div>
 		</div>
-		<a href="#" class = "btn">See More</a>
 	</div>
 </div>
 <!-----------------contact---------------->
@@ -137,12 +118,13 @@
 				</div>
 			</div>
 			<div class="contact-right">
-				<form>
+				<form name = "submit-to-google-sheet">
 					<input type = "text" name="Name" placeholder="Your Name " required>
-					<input type = "email" name = "email" placeholder="Your Email" required>
+					<input type = "email" name = "Email" placeholder="Your Email" required>
 					<textarea name="Message" rows ="6" placeholder="Your Message"></textarea>
 					<button type="submit" class="btn btn2">Submit</button>
 				</form>
+				<span id = "msg"> </span>
 			</div>
 
 		</div>
@@ -174,5 +156,35 @@
 
 </script>
 
+<script>
+	var sidemenu = document.getElementById("sidemenu")
+
+	function openmenu(){
+		sidemenu.style.right = "0";
+	}
+	function closemenu(){
+		sidemenu.style.right = "-200px";
+	}
+
+
+</script>
+<script>
+	const scriptURL = 'https://script.google.com/macros/s/AKfycbyXSnQd8q-9_kaMfUTvekI2uhiOwjXJpOO_eeBE5I2jgTfFqStA9jPQ_H7MBJr0JjZZ/exec'
+	const form = document.forms['submit-to-google-sheet']
+	const msg = document.getElementById("msg")
+
+	form.addEventListener('submit', e => {
+	e.preventDefault()
+	fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+		.then(response => {
+			msg.innerHTML = "Message Sent Successfully"
+			setTimeout(function(){
+				msg.innerHTML = ""
+			}, 5000)	
+			form.reset()
+		})
+		.catch(error => console.error('Error!', error.message))
+})
+</script>
 </body>
 </html>
